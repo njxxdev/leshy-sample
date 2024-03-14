@@ -2,19 +2,19 @@ package v1
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/njxxdev/leshy/pkg/api"
+	leshy_api "github.com/njxxdev/leshy/pkg/api"
 )
 
-var handlersGenerator = func() []api.Handler {
-	h := []api.Handler{
-		*api.NewHandler("GET", "/ping", func(ctx *gin.Context) {
+var handlersGenerator = func() []leshy_api.Handler {
+	h := []leshy_api.Handler{
+		*leshy_api.NewHandler("GET", "/ping", func(ctx *gin.Context) {
 			ctx.JSON(200, gin.H{
 				"message": "pong",
 			})
 		}, nil),
 	}
 
-	h = append(h, api.NewMultipathHandlerExtended(
+	h = append(h, leshy_api.NewMultipathHandlerExtended(
 		[]string{"/api/v1/hello", "/api/v2/salam"}, // You can use multipath handler
 		map[string]func(*gin.Context){
 			"GET": func(ctx *gin.Context) {
@@ -32,7 +32,7 @@ var handlersGenerator = func() []api.Handler {
 		},
 		nil)...)
 
-	h = append(h, api.NewMultipathHandlerExtended(
+	h = append(h, leshy_api.NewMultipathHandlerExtended(
 		[]string{"/api/v1/hello/:name", "/api/v2/salam/:name"},
 		map[string]func(*gin.Context){
 			"GET": func(ctx *gin.Context) {

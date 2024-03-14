@@ -2,12 +2,12 @@ package v1
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/njxxdev/leshy/pkg/api"
-	"github.com/njxxdev/leshy/pkg/component"
+	leshy_api "github.com/njxxdev/leshy/pkg/api"
+	leshy_component "github.com/njxxdev/leshy/pkg/component"
 )
 
 func CreateApiV1() {
-	component.GetComponentManager().Append(
-		api.NewAPIServer("api_v1", gin.Default()).AddHandlers(handlers...),
+	leshy_component.GetComponentManager().Append(
+		leshy_api.NewAPIServer("api_v1", gin.Default()).AddHandlers(handlers...),
 	)
 }
